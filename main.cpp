@@ -8,6 +8,11 @@
 
 int main (void) {
 
+    struct dump dumpInfo = {};
+    struct tree_t tree = {};
+    dumpInfo.nameOfGraphFile = "treeGraph.txt";
+    dumpInfo.nameOfDumpFile = "dump.html";
+
 
     node_t* node10 = treeNodeCtor(10);
 
@@ -29,7 +34,9 @@ int main (void) {
     node20->left = node15;
 
     printNode(node10);
-    fprintfTreeGraphDump (node10, "treeGraph.txt");
+    //fprintfTreeGraphDump (node10, "treeGraph.txt");
+    tree.rootNode = node10;
+    treeDump(&tree, &dumpInfo, "trying");
 
     free(node10);
     free(node5);

@@ -13,4 +13,8 @@ int fprintfNodeGraph (node_t* node, int rank, FILE* textFile);
 
 int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile);
 
+void treeDump (struct tree_t* tree, struct dump* dumpInfo, const char* message);
+
+void createGraphImageForDump (struct tree_t* tree, FILE* dumpFile, const char* nameOfTextGraphFile);
+
 #endif

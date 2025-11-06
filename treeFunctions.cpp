@@ -102,3 +102,55 @@ int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile) {
     return 0;
 }
 
+void treeDump (struct tree_t* tree, struct dump* dumpInfo, const char* message) {
+    assert(tree);
+    assert(dumpInfo);
+    assert(message);
+
+    const char* nameOfTextGraphFile = dumpInfo->nameOfGraphFile;
+
+    FILE* dumpFile = 0;
+    if(dumpInfo->dumpFileWasOpened)
+        dumpFile = fopen(dumpInfo->nameOfDumpFile, "a");
+    else {
+        dumpFile = fopen(dumpInfo->nameOfDumpFile, "w");
+        dumpInfo->dumpFileWasOpened = 1;
+    }
+
+    if (dumpFile == NULL) {
+        fprintf(stderr, "Error of opening file \"%s\"", dumpInfo->nameOfDumpFile);
+        perror("");
+        return;
+    }
+
+    fprintf(dumpFile, "<pre>\n");
+    fprintf(dumpFile, "<h3>listDump() <font color=red>from %s at %s:%d</font></h3>\n",
+    dumpInfo->nameOfFunc, dumpInfo->nameOfFile, dumpInfo->numOfLine);
+
+    fprintf(dumpFile, "<h2><font color=blue>%s</font></h2>\n", message);
+
+    createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+
+    if (fclose(dumpFile) != 0) {
+        fprintf(stderr, "Error of closing file \"%s\"", dumpInfo->nameOfGraphFile);
+        perror("");
+        return;
+    }
+}
+
+void createGraphImageForDump (struct tree_t* tree, FILE* dumpFile, const char* nameOfTextGraphFile) {
+    assert(tree);
+    assert(dumpFile);
+    assert(nameOfTextGraphFile);
+
+    static int graphImageCounter = 0;
+    graphImageCounter++;
+
+    node_t* rootNode = *treeRoot(tree);
+    fprintfTreeGraphDump(rootNode, nameOfTextGraphFile);
+
+    char graphvizCallCommand[STR_SIZE] = {};
+    snprintf(graphvizCallCommand, sizeof(graphvizCallCommand), "dot -Tpng %s -o PNG_DUMPS/graph%d.png", nameOfTextGraphFile, graphImageCounter);
+    system(graphvizCallCommand);
+    fprintf(dumpFile, "Image:\n <img src=PNG_DUMPS/graph%d.png width=1000px>\n", graphImageCounter);
+}

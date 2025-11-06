@@ -21,3 +21,15 @@ node_t** nodeRight (node_t* node) {
 
     return &(node->right);
 }
+
+node_t** treeRoot (tree_t* treePtr) {
+    assert(treePtr);
+
+    return &(treePtr->rootNode);
+}
+
+size_t* treeSize (tree_t* treePtr) {
+    assert(treePtr);
+
+    return &(treePtr->size);
+}
