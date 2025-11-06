@@ -3,6 +3,20 @@
 
 #include "structsAndConsts.h"
 
+#define TreeInsert(treeAddress, dataValue, dumpInfoAddress) ({\
+    (dumpInfoAddress)->nameOfFile = __FILE__;\
+    (dumpInfoAddress)->numOfLine = __LINE__;\
+    node_t* returnableValue = treeInsert(treeAddress, dataValue, dumpInfoAddress);\
+    returnableValue;\
+})
+
+#define TreeCtor(treeAddress, rootDataValue, dumpInfoAddress) ({\
+    (dumpInfoAddress)->nameOfFile = __FILE__;\
+    (dumpInfoAddress)->numOfLine = __LINE__;\
+    tree_t* returnableValue = treeCtor(treeAddress, rootDataValue, dumpInfoAddress);\
+    returnableValue;\
+})
+
 node_t* treeNodeCtor (treeElem_t dataValue);
 
 int printNode (node_t* node);
@@ -18,5 +32,9 @@ void treeDump (struct tree_t* tree, struct dump* dumpInfo, const char* message);
 void createGraphImageForDump (struct tree_t* tree, FILE* dumpFile, const char* nameOfTextGraphFile);
 
 node_t* treeInsert (tree_t* tree, treeElem_t dataValue, struct dump* dumpInfo);
+
+tree_t* treeCtor (tree_t* tree, treeElem_t rootDataValue, dump* dumpInfo);
+
+int deleteNode (node_t* node);
 
 #endif

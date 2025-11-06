@@ -74,3 +74,961 @@ Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
 Directory:	C:\Users\Admin\Desktop\prodva\Tree
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042EE3B в функции printNode() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 25. Попытка прочесть данные по адресу 0x4F444E4D в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x005081DC (32-bit), Flags: Cmdre0, Thread: 0x5724 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042EE3B in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: printNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:25:
+
+     23: 
+     24:     node_t** left = nodeLeft(node);
+=>   25:     if((left != NULL) && (*left != NULL))
+     26:         printNode(*nodeLeft(node));
+     27: 
+
+# 1 0x0042EE56 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: printNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:26:
+
+     24:     node_t** left = nodeLeft(node);
+     25:     if((left != NULL) && (*left != NULL))
+=>   26:         printNode(*nodeLeft(node));
+     27: 
+     28:     printf("%d", *nodeData(node));
+
+# 2 0x0042EEA5 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: printNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:32:
+
+     30:     node_t** right = nodeRight(node);
+     31:     if((right != NULL) && (*right != NULL))
+=>   32:         printNode(*nodeRight(node));
+     33: 
+     34:     printf(")");
+
+# 3 0x0042DAA1 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:31:
+
+     29: 
+     30: 
+=>   31:     printNode(*treeRoot(&tree));
+     32: 
+     33: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  6 2025 23:12:46, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 06 2025 23:12:50
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042EE3B в функции printNode() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 25. Попытка прочесть данные по адресу 0x4F444E4D в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x005081DC (32-bit), Flags: Cmdre0, Thread: 0x5724 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042EE3B in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: printNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:25:
+
+     23: 
+     24:     node_t** left = nodeLeft(node);
+=>   25:     if((left != NULL) && (*left != NULL))
+     26:         printNode(*nodeLeft(node));
+     27: 
+
+# 1 0x0042EE56 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: printNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:26:
+
+     24:     node_t** left = nodeLeft(node);
+     25:     if((left != NULL) && (*left != NULL))
+=>   26:         printNode(*nodeLeft(node));
+     27: 
+     28:     printf("%d", *nodeData(node));
+
+# 2 0x0042EEA5 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: printNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:32:
+
+     30:     node_t** right = nodeRight(node);
+     31:     if((right != NULL) && (*right != NULL))
+=>   32:         printNode(*nodeRight(node));
+     33: 
+     34:     printf(")");
+
+# 3 0x0042DAA1 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:31:
+
+     29: 
+     30: 
+=>   31:     printNode(*treeRoot(&tree));
+     32: 
+     33: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  6 2025 23:12:46, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 06 2025 23:12:50
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042F1BF в функции fprintfNodeGraph() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 87. Попытка прочесть данные по адресу 0x12345678 в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x005091DC (32-bit), Flags: Cmdre0, Thread: 0xE5C (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042F1BF in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:87:
+
+     85: 
+     86:     node_t** right = nodeRight(node);
+=>   87:     if((right != NULL) && (*right != NULL) && ((*right)->canary == SIGNATURE))
+     88:         fprintfNodeGraph(*nodeRight(node), rank + 1, graphFile);
+     89: 
+
+# 1 0x0042F19D in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:84:
+
+     82:     node_t** left = nodeLeft(node);
+     83:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
+=>   84:         fprintfNodeGraph(*nodeLeft(node), rank + 1, graphFile);
+     85: 
+     86:     node_t** right = nodeRight(node);
+
+# 2 0x0042EFDB in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:56:
+
+     54:     fprintf(graphFile, "    node [shape = Mrecord, color = black];\n");
+     55: 
+=>   56:     fprintfNodeGraph(rootNode, 0, graphFile);
+     57:     fprintfNodeLinksForGraph(rootNode, graphFile);
+     58: 
+
+# 3 0x0042F65F in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:169:
+
+    167: 
+    168:     node_t* rootNode = *treeRoot(tree);
+=>  169:     fprintfTreeGraphDump(rootNode, nameOfTextGraphFile);
+    170: 
+    171:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 4 0x0042F57D in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:151:
+
+    149:     fprintf(dumpFile, "<h2><font color=blue>%s</font></h2>\n", message);
+    150: 
+=>  151:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    152: 
+    153:     if (fclose(dumpFile) != 0) {
+
+# 5 0x0042F79F in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:188:
+
+    186:     node_t* newNode = NULL;
+    187: 
+=>  188:     treeDump(tree, dumpInfo, beforeMessage);
+    189: 
+    190:     for (node_t* node = *treeRoot(tree); ; ) {
+
+# 6 0x0042D9DA in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:21:
+
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+     20:     node2->right = (node_t*)0x12345678;
+=>   21:     TreeInsert (&tree, 17, &dumpInfo);
+     22:     TreeInsert (&tree, 5, &dumpInfo);
+     23:     TreeInsert (&tree, 6, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:25:40, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:25:43
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042F1BF в функции fprintfNodeGraph() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 87. Попытка прочесть данные по адресу 0x12345678 в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x005091DC (32-bit), Flags: Cmdre0, Thread: 0xE5C (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042F1BF in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:87:
+
+     85: 
+     86:     node_t** right = nodeRight(node);
+=>   87:     if((right != NULL) && (*right != NULL) && ((*right)->canary == SIGNATURE))
+     88:         fprintfNodeGraph(*nodeRight(node), rank + 1, graphFile);
+     89: 
+
+# 1 0x0042F19D in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:84:
+
+     82:     node_t** left = nodeLeft(node);
+     83:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
+=>   84:         fprintfNodeGraph(*nodeLeft(node), rank + 1, graphFile);
+     85: 
+     86:     node_t** right = nodeRight(node);
+
+# 2 0x0042EFDB in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:56:
+
+     54:     fprintf(graphFile, "    node [shape = Mrecord, color = black];\n");
+     55: 
+=>   56:     fprintfNodeGraph(rootNode, 0, graphFile);
+     57:     fprintfNodeLinksForGraph(rootNode, graphFile);
+     58: 
+
+# 3 0x0042F65F in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:169:
+
+    167: 
+    168:     node_t* rootNode = *treeRoot(tree);
+=>  169:     fprintfTreeGraphDump(rootNode, nameOfTextGraphFile);
+    170: 
+    171:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 4 0x0042F57D in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:151:
+
+    149:     fprintf(dumpFile, "<h2><font color=blue>%s</font></h2>\n", message);
+    150: 
+=>  151:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    152: 
+    153:     if (fclose(dumpFile) != 0) {
+
+# 5 0x0042F79F in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:188:
+
+    186:     node_t* newNode = NULL;
+    187: 
+=>  188:     treeDump(tree, dumpInfo, beforeMessage);
+    189: 
+    190:     for (node_t* node = *treeRoot(tree); ; ) {
+
+# 6 0x0042D9DA in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:21:
+
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+     20:     node2->right = (node_t*)0x12345678;
+=>   21:     TreeInsert (&tree, 17, &dumpInfo);
+     22:     TreeInsert (&tree, 5, &dumpInfo);
+     23:     TreeInsert (&tree, 6, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:25:40, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:25:43
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045BA17 в функции fprintfNodeLinksForGraph() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 112. Попытка прочесть данные по адресу 0x12345678 в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x418 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045BA17 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeLinksForGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:112:
+
+    110: 
+    111:     node_t** right = nodeRight(node);
+=>  112:     if((right != NULL) && (*right != NULL) && ((*right)->canary == SIGNATURE)) {
+    113:         fprintf(graphFile, "    node0x%p:right -> node0x%p:addr [color = \"#5d510cff\"];\n", node, *nodeRight(node));
+    114:         fprintfNodeLinksForGraph(*nodeRight(node), graphFile);
+
+# 1 0x0045B990 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeLinksForGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:102:
+
+    100:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE)) {
+    101:         fprintf(graphFile, "    node0x%p:left -> node0x%p:addr [color = \"#5d510cff\"];\n", node, *nodeLeft(node));
+=>  102:         fprintfNodeLinksForGraph(*nodeLeft(node), graphFile);
+    103:     }
+    104: 
+
+# 2 0x0045B599 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:59:
+
+     57: 
+     58:     fprintfNodeGraph(rootNode, 0, graphFile);
+=>   59:     fprintfNodeLinksForGraph(rootNode, graphFile);
+     60: 
+     61:     fprintf(graphFile, " }\n");
+
+# 3 0x0045BECC in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:171:
+
+    169: 
+    170:     node_t* rootNode = *treeRoot(tree);
+=>  171:     fprintfTreeGraphDump(rootNode, nameOfTextGraphFile);
+    172: 
+    173:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 4 0x0045BD20 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:153:
+
+    151:     fprintf(dumpFile, "<h2><font color=blue>%s</font></h2>\n", message);
+    152: 
+=>  153:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    154: 
+    155:     if (fclose(dumpFile) != 0) {
+
+# 5 0x0045C04F in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:190:
+
+    188:     node_t* newNode = NULL;
+    189: 
+=>  190:     treeDump(tree, dumpInfo, beforeMessage);
+    191: 
+    192:     for (node_t* node = *treeRoot(tree); ; ) {
+
+# 6 0x0042D9DA in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:21:
+
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+     20:     node2->right = (node_t*)0x12345678;
+=>   21:     TreeInsert (&tree, 17, &dumpInfo);
+     22:     TreeInsert (&tree, 5, &dumpInfo);
+     23:     TreeInsert (&tree, 6, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:30:57, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:31:01
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045BA17 в функции fprintfNodeLinksForGraph() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 112. Попытка прочесть данные по адресу 0x12345678 в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x418 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045BA17 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeLinksForGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:112:
+
+    110: 
+    111:     node_t** right = nodeRight(node);
+=>  112:     if((right != NULL) && (*right != NULL) && ((*right)->canary == SIGNATURE)) {
+    113:         fprintf(graphFile, "    node0x%p:right -> node0x%p:addr [color = \"#5d510cff\"];\n", node, *nodeRight(node));
+    114:         fprintfNodeLinksForGraph(*nodeRight(node), graphFile);
+
+# 1 0x0045B990 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeLinksForGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:102:
+
+    100:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE)) {
+    101:         fprintf(graphFile, "    node0x%p:left -> node0x%p:addr [color = \"#5d510cff\"];\n", node, *nodeLeft(node));
+=>  102:         fprintfNodeLinksForGraph(*nodeLeft(node), graphFile);
+    103:     }
+    104: 
+
+# 2 0x0045B599 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:59:
+
+     57: 
+     58:     fprintfNodeGraph(rootNode, 0, graphFile);
+=>   59:     fprintfNodeLinksForGraph(rootNode, graphFile);
+     60: 
+     61:     fprintf(graphFile, " }\n");
+
+# 3 0x0045BECC in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:171:
+
+    169: 
+    170:     node_t* rootNode = *treeRoot(tree);
+=>  171:     fprintfTreeGraphDump(rootNode, nameOfTextGraphFile);
+    172: 
+    173:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 4 0x0045BD20 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:153:
+
+    151:     fprintf(dumpFile, "<h2><font color=blue>%s</font></h2>\n", message);
+    152: 
+=>  153:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    154: 
+    155:     if (fclose(dumpFile) != 0) {
+
+# 5 0x0045C04F in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:190:
+
+    188:     node_t* newNode = NULL;
+    189: 
+=>  190:     treeDump(tree, dumpInfo, beforeMessage);
+    191: 
+    192:     for (node_t* node = *treeRoot(tree); ; ) {
+
+# 6 0x0042D9DA in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:21:
+
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+     20:     node2->right = (node_t*)0x12345678;
+=>   21:     TreeInsert (&tree, 17, &dumpInfo);
+     22:     TreeInsert (&tree, 5, &dumpInfo);
+     23:     TreeInsert (&tree, 6, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:30:57, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:31:01
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045BA9F в функции fprintfNodeLinksForGraph() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 117. Попытка прочесть данные по адресу 0x12345678 в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x6C50 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045BA9F in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeLinksForGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:117:
+
+    115:     }
+    116: 
+=>  117:     if((right != NULL) && (*right != NULL) && ((*right)->canary != SIGNATURE)) {
+    118:         fprintf(graphFile, "    errorNode0x%p [label = \"ERRROR!\\n 0x%p \", style = filled, fillcolor = \"#be3131ff\", color = black, fontcolor = white, shape = doubleoctagon];\n",
+    119:                 *right, *right);
+
+# 1 0x0045B990 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeLinksForGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:102:
+
+    100:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE)) {
+    101:         fprintf(graphFile, "    node0x%p:left -> node0x%p:addr [color = \"#5d510cff\"];\n", node, *nodeLeft(node));
+=>  102:         fprintfNodeLinksForGraph(*nodeLeft(node), graphFile);
+    103:     }
+    104: 
+
+# 2 0x0045B599 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:59:
+
+     57: 
+     58:     fprintfNodeGraph(rootNode, 0, graphFile);
+=>   59:     fprintfNodeLinksForGraph(rootNode, graphFile);
+     60: 
+     61:     fprintf(graphFile, " }\n");
+
+# 3 0x0045BEF0 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:171:
+
+    169: 
+    170:     node_t* rootNode = *treeRoot(tree);
+=>  171:     fprintfTreeGraphDump(rootNode, nameOfTextGraphFile);
+    172: 
+    173:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 4 0x0045BD44 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:153:
+
+    151:     fprintf(dumpFile, "<h2><font color=blue>%s</font></h2>\n", message);
+    152: 
+=>  153:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    154: 
+    155:     if (fclose(dumpFile) != 0) {
+
+# 5 0x0045C073 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:190:
+
+    188:     node_t* newNode = NULL;
+    189: 
+=>  190:     treeDump(tree, dumpInfo, beforeMessage);
+    191: 
+    192:     for (node_t* node = *treeRoot(tree); ; ) {
+
+# 6 0x0042D9DA in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:21:
+
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+     20:     node2->right = (node_t*)0x12345678;
+=>   21:     TreeInsert (&tree, 17, &dumpInfo);
+     22:     TreeInsert (&tree, 5, &dumpInfo);
+     23:     TreeInsert (&tree, 6, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:31:45, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:31:49
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045BA9F в функции fprintfNodeLinksForGraph() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 117. Попытка прочесть данные по адресу 0x12345678 в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x6C50 (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045BA9F in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeLinksForGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:117:
+
+    115:     }
+    116: 
+=>  117:     if((right != NULL) && (*right != NULL) && ((*right)->canary != SIGNATURE)) {
+    118:         fprintf(graphFile, "    errorNode0x%p [label = \"ERRROR!\\n 0x%p \", style = filled, fillcolor = \"#be3131ff\", color = black, fontcolor = white, shape = doubleoctagon];\n",
+    119:                 *right, *right);
+
+# 1 0x0045B990 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfNodeLinksForGraph() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:102:
+
+    100:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE)) {
+    101:         fprintf(graphFile, "    node0x%p:left -> node0x%p:addr [color = \"#5d510cff\"];\n", node, *nodeLeft(node));
+=>  102:         fprintfNodeLinksForGraph(*nodeLeft(node), graphFile);
+    103:     }
+    104: 
+
+# 2 0x0045B599 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:59:
+
+     57: 
+     58:     fprintfNodeGraph(rootNode, 0, graphFile);
+=>   59:     fprintfNodeLinksForGraph(rootNode, graphFile);
+     60: 
+     61:     fprintf(graphFile, " }\n");
+
+# 3 0x0045BEF0 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:171:
+
+    169: 
+    170:     node_t* rootNode = *treeRoot(tree);
+=>  171:     fprintfTreeGraphDump(rootNode, nameOfTextGraphFile);
+    172: 
+    173:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 4 0x0045BD44 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:153:
+
+    151:     fprintf(dumpFile, "<h2><font color=blue>%s</font></h2>\n", message);
+    152: 
+=>  153:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    154: 
+    155:     if (fclose(dumpFile) != 0) {
+
+# 5 0x0045C073 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:190:
+
+    188:     node_t* newNode = NULL;
+    189: 
+=>  190:     treeDump(tree, dumpInfo, beforeMessage);
+    191: 
+    192:     for (node_t* node = *treeRoot(tree); ; ) {
+
+# 6 0x0042D9DA in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:21:
+
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+     20:     node2->right = (node_t*)0x12345678;
+=>   21:     TreeInsert (&tree, 17, &dumpInfo);
+     22:     TreeInsert (&tree, 5, &dumpInfo);
+     23:     TreeInsert (&tree, 6, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:31:45, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:31:49
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045C0A1 в функции treeInsert() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 193. Попытка прочесть данные по адресу 0x1234567C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x46B4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045C0A1 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:193:
+
+    191: 
+    192:     for (node_t* node = *treeRoot(tree); ; ) {
+=>  193:         if (dataValue <= *nodeData(node)) {
+    194:             if (*nodeLeft(node) == NULL) {
+    195:                 *nodeLeft(node) = treeNodeCtor(dataValue);
+
+# 1 0x0042DA0A in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:22:
+
+     20:     node2->right = (node_t*)0x12345678;
+     21:     TreeInsert (&tree, 17, &dumpInfo);
+=>   22:     TreeInsert (&tree, 5, &dumpInfo);
+     23:     TreeInsert (&tree, 6, &dumpInfo);
+     24:     TreeInsert (&tree, 99, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:33:09, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:33:12
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045C0A1 в функции treeInsert() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 193. Попытка прочесть данные по адресу 0x1234567C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x46B4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045C0A1 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:193:
+
+    191: 
+    192:     for (node_t* node = *treeRoot(tree); ; ) {
+=>  193:         if (dataValue <= *nodeData(node)) {
+    194:             if (*nodeLeft(node) == NULL) {
+    195:                 *nodeLeft(node) = treeNodeCtor(dataValue);
+
+# 1 0x0042DA0A in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:22:
+
+     20:     node2->right = (node_t*)0x12345678;
+     21:     TreeInsert (&tree, 17, &dumpInfo);
+=>   22:     TreeInsert (&tree, 5, &dumpInfo);
+     23:     TreeInsert (&tree, 6, &dumpInfo);
+     24:     TreeInsert (&tree, 99, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:33:09, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:33:12
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045C0FC в функции treeInsert() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 193. Попытка прочесть данные по адресу 0x1234567C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x4850 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045C0FC in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:193:
+
+    191: 
+    192:     for (node_t* node = *treeRoot(tree); ; ) {
+=>  193:         if (dataValue <= *nodeData(node)) {
+    194:             if (*nodeLeft(node) == NULL) {
+    195:                 *nodeLeft(node) = treeNodeCtor(dataValue);
+
+# 1 0x0042DA0A in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:22:
+
+     20:     node2->right = (node_t*)0x12345678;
+     21:     TreeInsert (&tree, 17, &dumpInfo);
+=>   22:     TreeInsert (&tree, 5, &dumpInfo);
+     23:     TreeInsert (&tree, 6, &dumpInfo);
+     24:     TreeInsert (&tree, 99, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:35:43, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:35:50
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045C0FC в функции treeInsert() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 193. Попытка прочесть данные по адресу 0x1234567C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x4850 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045C0FC in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:193:
+
+    191: 
+    192:     for (node_t* node = *treeRoot(tree); ; ) {
+=>  193:         if (dataValue <= *nodeData(node)) {
+    194:             if (*nodeLeft(node) == NULL) {
+    195:                 *nodeLeft(node) = treeNodeCtor(dataValue);
+
+# 1 0x0042DA0A in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:22:
+
+     20:     node2->right = (node_t*)0x12345678;
+     21:     TreeInsert (&tree, 17, &dumpInfo);
+=>   22:     TreeInsert (&tree, 5, &dumpInfo);
+     23:     TreeInsert (&tree, 6, &dumpInfo);
+     24:     TreeInsert (&tree, 99, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:35:43, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:35:50
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045C108 в функции treeInsert() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 193. Попытка прочесть данные по адресу 0x1234567C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x1A24 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045C108 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:193:
+
+    191: 
+    192:     for (node_t* node = *treeRoot(tree); ; ) {
+=>  193:         if (dataValue <= *nodeData(node)) {
+    194:             if (*nodeLeft(node) == NULL) {
+    195:                 *nodeLeft(node) = treeNodeCtor(dataValue);
+
+# 1 0x0042DA15 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:23:
+
+     21:     node2->left = (node_t*)0x67693123;
+     22:     TreeInsert (&tree, 17, &dumpInfo);
+=>   23:     TreeInsert (&tree, 5, &dumpInfo);
+     24:     TreeInsert (&tree, 6, &dumpInfo);
+     25:     TreeInsert (&tree, 99, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:36:30, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:36:34
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045C108 в функции treeInsert() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 193. Попытка прочесть данные по адресу 0x1234567C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x1A24 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045C108 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:193:
+
+    191: 
+    192:     for (node_t* node = *treeRoot(tree); ; ) {
+=>  193:         if (dataValue <= *nodeData(node)) {
+    194:             if (*nodeLeft(node) == NULL) {
+    195:                 *nodeLeft(node) = treeNodeCtor(dataValue);
+
+# 1 0x0042DA15 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:23:
+
+     21:     node2->left = (node_t*)0x67693123;
+     22:     TreeInsert (&tree, 17, &dumpInfo);
+=>   23:     TreeInsert (&tree, 5, &dumpInfo);
+     24:     TreeInsert (&tree, 6, &dumpInfo);
+     25:     TreeInsert (&tree, 99, &dumpInfo);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 00:36:30, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 00:36:33
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------

@@ -4,6 +4,7 @@
 typedef int treeElem_t;
 
 struct node_t {
+    int canary;
     treeElem_t data;
     node_t* left;
     node_t* right;
@@ -25,5 +26,6 @@ struct dump {
 };
 
 const size_t STR_SIZE = 64;
+const int SIGNATURE = 0xBADBABE;
 
 #endif

@@ -1,14 +1,17 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <TXLib.h>
 
 #include "treeFunctions.h"
 #include "nodeAccessFunctions.h"
 #include "structsAndConsts.h"
 
+
 node_t* treeNodeCtor (treeElem_t dataValue) {
     node_t* newNode = (node_t*)calloc(1, sizeof(node_t));
 
+    newNode->canary = SIGNATURE;
     *(nodeData(newNode)) = dataValue;
     *(nodeLeft(newNode)) = NULL;
     *(nodeRight(newNode)) = NULL;
@@ -22,13 +25,13 @@ int printNode (node_t* node) {
     printf("(");
 
     node_t** left = nodeLeft(node);
-    if((left != NULL) && (*left != NULL))
+    if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
         printNode(*nodeLeft(node));
 
     printf("%d", *nodeData(node));
 
     node_t** right = nodeRight(node);
-    if((right != NULL) && (*right != NULL))
+    if((right != NULL) && (*right != NULL) && ((*right)->canary == SIGNATURE))
         printNode(*nodeRight(node));
 
     printf(")");
@@ -69,15 +72,21 @@ int fprintfNodeGraph (node_t* node, int rank, FILE* graphFile) {
     assert(node);
     assert(graphFile);
 
-    fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| data = %d|{<left>LEFT\\n 0x%p| <right>RIGHT\\n 0x%p}}\", style = filled, fillcolor = \"#c1e0a7ff\", color = black];\n",
-                node, rank, node, *nodeData(node), *(nodeLeft(node)), *(nodeRight(node)));
+    if(node->canary != SIGNATURE) {
+        fprintf(graphFile, "    errorNode0x%p [rank = %d, label = \"{ ERRROR!| 0x%p }\", style = filled, fillcolor = \"#be3131ff\", color = black, shape = doubleoctagon];\n",
+                node, rank, node);
+        return 0;
+    }
+
+    fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| data = %d|CANARY = %X|{<left>LEFT\\n 0x%p| <right>RIGHT\\n 0x%p}}\", style = filled, fillcolor = \"#c1e0a7ff\", color = black];\n",
+                node, rank, node, *nodeData(node), node->canary,*(nodeLeft(node)), *(nodeRight(node)));
 
     node_t** left = nodeLeft(node);
-    if((left != NULL) && (*left != NULL))
+    if((left != NULL) && (*left != NULL) && !(_txIsBadReadPtr(*left)) && ((*left)->canary == SIGNATURE))
         fprintfNodeGraph(*nodeLeft(node), rank + 1, graphFile);
 
     node_t** right = nodeRight(node);
-    if((right != NULL) && (*right != NULL))
+    if((right != NULL) && (*right != NULL) && !(_txIsBadReadPtr(*right)) && ((*right)->canary == SIGNATURE))
         fprintfNodeGraph(*nodeRight(node), rank + 1, graphFile);
 
     return 0;
@@ -88,15 +97,27 @@ int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile) {
     assert(graphFile);
 
     node_t** left = nodeLeft(node);
-    if((left != NULL) && (*left != NULL)) {
+    if((left != NULL) && (*left != NULL) && !(_txIsBadReadPtr(*left)) && ((*left)->canary == SIGNATURE)) {
         fprintf(graphFile, "    node0x%p:left -> node0x%p:addr [color = \"#5d510cff\"];\n", node, *nodeLeft(node));
         fprintfNodeLinksForGraph(*nodeLeft(node), graphFile);
     }
 
+    if((left != NULL) && (*left != NULL) && (_txIsBadReadPtr(*left))) {
+        fprintf(graphFile, "    errorNode0x%p [label = \"ERRROR!\\n 0x%p \", style = filled, fillcolor = \"#be3131ff\", color = black, fontcolor = white, shape = doubleoctagon];\n",
+                *left, *left);
+        fprintf(graphFile, "    node0x%p:left -> errorNode0x%p [color = \"#f90d0dff\"];\n", node, *left);
+    }
+
     node_t** right = nodeRight(node);
-    if((right != NULL) && (*right != NULL)) {
+    if((right != NULL) && (*right != NULL) && !(_txIsBadReadPtr(*right)) && ((*right)->canary == SIGNATURE)) {
         fprintf(graphFile, "    node0x%p:right -> node0x%p:addr [color = \"#5d510cff\"];\n", node, *nodeRight(node));
         fprintfNodeLinksForGraph(*nodeRight(node), graphFile);
+    }
+
+    if((right != NULL) && (*right != NULL) && (_txIsBadReadPtr(*right))) {
+        fprintf(graphFile, "    errorNode0x%p [label = \"ERRROR!\\n 0x%p \", style = filled, fillcolor = \"#be3131ff\", color = black, fontcolor = white, shape = doubleoctagon];\n",
+                *right, *right);
+        fprintf(graphFile, "    node0x%p:right -> errorNode0x%p [color = \"#f90d0dff\"];\n", node, *right);
     }
 
     return 0;
@@ -192,8 +213,37 @@ node_t* treeInsert (tree_t* tree, treeElem_t dataValue, struct dump* dumpInfo) {
             }
         }
     }
+    *treeSize(tree) += 1;
 
     treeDump(tree, dumpInfo, afterMessage);
 
     return newNode;
+}
+
+tree_t* treeCtor(tree_t* tree, treeElem_t rootDataValue, dump* dumpInfo) {
+    assert(tree);
+
+    *treeRoot(tree) = treeNodeCtor(rootDataValue);
+    *treeSize(tree) = 1;
+
+    dumpInfo->nameOfFunc = __func__;
+    treeDump(tree, dumpInfo, "AFTER creation of the tree");
+
+    return tree;
+}
+
+int deleteNode(node_t* node) {
+    assert(node);
+
+    node_t** left = nodeLeft(node);
+    if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
+        deleteNode(*nodeLeft(node));
+
+    node_t** right = nodeRight(node);
+    if((right != NULL) && (*right != NULL) && ((*right)->canary == SIGNATURE))
+        deleteNode(*nodeRight(node));
+
+    node->canary = 0xDEADBABE;
+    free(node);
+    return 0;
 }
