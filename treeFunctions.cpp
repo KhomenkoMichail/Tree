@@ -247,3 +247,27 @@ int deleteNode(node_t* node) {
     free(node);
     return 0;
 }
+
+int nodeVerifier (node_t* node, int* errorCode) {
+    assert(node);
+
+    if (node->canary != SIGNATURE)
+        (*errorCode) |= deadCanary;
+
+    if (_txIsBadReadPtr(*nodeRight(node)))
+        (*errorCode) |= badRight;
+
+    if (_txIsBadReadPtr(*nodeLeft(node)))
+        (*errorCode) |= badLeft;
+
+    if  (!(_txIsBadReadPtr(*nodeRight(node))))
+        nodeVerifier(*nodeRight(node), errorCode);
+
+    if  (!(_txIsBadReadPtr(*nodeRight(node))))
+        nodeVerifier(*nodeRight(node), errorCode);
+
+    if  (!(_txIsBadReadPtr(*nodeLeft(node))))
+        nodeVerifier(*nodeLeft(node), errorCode);
+
+    return (*errorCode);
+}

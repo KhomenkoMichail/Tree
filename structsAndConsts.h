@@ -25,6 +25,13 @@ struct dump {
     int dumpFileWasOpened;
 };
 
+enum treeErr_t {
+    noErrors = 0x00,
+    deadCanary = 0x01,
+    badLeft = 0x02,
+    badRight = 0x04,
+};
+
 const size_t STR_SIZE = 64;
 const int SIGNATURE = 0xBADBABE;
 
