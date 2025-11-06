@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <TXLib.h>
 
 #include "structsAndConsts.h"
 #include "nodeAccessFunctions.h"
@@ -33,10 +34,21 @@ int main (void) {
 
     node20->left = node15;
 
-    printNode(node10);
+    //printNode(node10);
     //fprintfTreeGraphDump (node10, "treeGraph.txt");
     tree.rootNode = node10;
-    treeDump(&tree, &dumpInfo, "trying");
+    //treeDump(&tree, &dumpInfo, "trying");
+    treeInsert (&tree, 40, &dumpInfo);
+    treeInsert (&tree, 2, &dumpInfo);
+    treeInsert (&tree, 17, &dumpInfo);
+    treeInsert (&tree, 5, &dumpInfo);
+    treeInsert (&tree, 6, &dumpInfo);
+    treeInsert (&tree, 99, &dumpInfo);
+
+
+
+
+    printNode(node10);
 
     free(node10);
     free(node5);

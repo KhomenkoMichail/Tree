@@ -1,0 +1,76 @@
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x005081DC (32-bit), Flags: Cmdre0, Thread: 0x6AEC (Main), GetLastError(): 183 (Невозможно создать файл, так как он уже существует). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00411FA8 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: (anonymous namespace)::TX::_txOnSignal() at c:/users/admin/downloads/codeblocks/mingw/include/txlib.h:11173
+# 1 0x76028F03 in C:\WINDOWS\System32\msvcrt.dll: raise()
+# 2 0x7602D3CB in C:\WINDOWS\System32\msvcrt.dll: abort()
+# 3 0x76029D47 in C:\WINDOWS\System32\msvcrt.dll: assert()
+
+# 4 0x0042EE50 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: fprintfTreeGraphDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:40:
+
+     38: 
+     39: int fprintfTreeGraphDump (node_t* rootNode, const char* textGraphFileName) {
+=>   40:     assert(rootNode);
+     41:     assert(textGraphFileName);
+     42: 
+
+# 5 0x0042F47F in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: createGraphImageForDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:150:
+
+    148: 
+    149:     node_t* rootNode = *treeRoot(tree);
+=>  150:     fprintfTreeGraphDump(rootNode, nameOfTextGraphFile);
+    151: 
+    152:     char graphvizCallCommand[STR_SIZE] = {};
+
+# 6 0x0042F39D in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeDump() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:132:
+
+    130:     fprintf(dumpFile, "<h2><font color=blue>%s</font></h2>\n", message);
+    131: 
+=>  132:     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
+    133: 
+    134:     if (fclose(dumpFile) != 0) {
+
+# 7 0x0042F5B8 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: treeInsert() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:167:
+
+    165:     snprintf(afterMessage, sizeof(afterMessage), "AFTER insert \"%d\" in tree", dataValue);
+    166: 
+=>  167:     treeDump(tree, dumpInfo, beforeMessage);
+    168: 
+    169:     for (node_t* node = *treeRoot(tree); ; ) {
+
+# 8 0x0042D9CA in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:41:
+
+     39:     //tree.rootNode = node10;
+     40:     //treeDump(&tree, &dumpInfo, "trying");
+=>   41:     treeInsert (&tree, 40, &dumpInfo);
+     42: 
+     43:     free(node10);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  6 2025 22:19:15, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 06 2025 22:19:18
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------

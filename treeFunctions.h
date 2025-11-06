@@ -17,4 +17,6 @@ void treeDump (struct tree_t* tree, struct dump* dumpInfo, const char* message);
 
 void createGraphImageForDump (struct tree_t* tree, FILE* dumpFile, const char* nameOfTextGraphFile);
 
+node_t* treeInsert (tree_t* tree, treeElem_t dataValue, struct dump* dumpInfo);
+
 #endif

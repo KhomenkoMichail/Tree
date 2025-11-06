@@ -154,3 +154,46 @@ void createGraphImageForDump (struct tree_t* tree, FILE* dumpFile, const char* n
     system(graphvizCallCommand);
     fprintf(dumpFile, "Image:\n <img src=PNG_DUMPS/graph%d.png width=1000px>\n", graphImageCounter);
 }
+
+node_t* treeInsert (tree_t* tree, treeElem_t dataValue, struct dump* dumpInfo) {
+    assert(tree);
+
+    dumpInfo->nameOfFunc = __func__;
+    char beforeMessage[STR_SIZE] =  {};
+    char afterMessage[STR_SIZE]= {};
+    snprintf(beforeMessage, sizeof(beforeMessage), "BEFORE insert \"%d\" in tree", dataValue);
+    snprintf(afterMessage, sizeof(afterMessage), "AFTER insert \"%d\" in tree", dataValue);
+
+    node_t* newNode = NULL;
+
+    treeDump(tree, dumpInfo, beforeMessage);
+
+    for (node_t* node = *treeRoot(tree); ; ) {
+        if (dataValue <= *nodeData(node)) {
+            if (*nodeLeft(node) == NULL) {
+                *nodeLeft(node) = treeNodeCtor(dataValue);
+                newNode = *nodeLeft(node);
+                break;
+            }
+            else {
+                node = *nodeLeft(node);
+                continue;
+            }
+        }
+        else {
+            if (*nodeRight(node) == NULL) {
+                *nodeRight(node) = treeNodeCtor(dataValue);
+                newNode = *nodeRight(node);
+                break;
+            }
+            else {
+                node = *nodeRight(node);
+                continue;
+            }
+        }
+    }
+
+    treeDump(tree, dumpInfo, afterMessage);
+
+    return newNode;
+}
