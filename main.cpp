@@ -29,6 +29,7 @@ int main (void) {
     node20->left = node15;
 
     printNode(node10);
+    fprintfTreeGraphDump (node10, "treeGraph.txt");
 
     free(node10);
     free(node5);
