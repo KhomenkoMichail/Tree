@@ -37,4 +37,12 @@ tree_t* treeCtor (tree_t* tree, treeElem_t rootDataValue, dump* dumpInfo);
 
 int deleteNode (node_t* node);
 
+void fprintfTreeErrorsForDump (struct tree_t* tree, FILE* dumpFile, struct dump* dumpInfo);
+
+int nodeVerifier (node_t* node, int* errorCode);
+
+int treeVerifier (tree_t* tree);
+
+int deleteTree (tree_t* tree);
+
 #endif

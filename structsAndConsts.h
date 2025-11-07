@@ -13,6 +13,8 @@ struct node_t {
 struct tree_t {
     node_t* rootNode;
     size_t size;
+
+    int errorCode;
 };
 
 struct dump {

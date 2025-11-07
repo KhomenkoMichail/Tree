@@ -1032,3 +1032,411 @@ Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
 Directory:	C:\Users\Admin\Desktop\prodva\Tree
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042D9AF в функции main() в файле C:/Users/Admin/Desktop/prodva/Tree/main.cpp на строке 20. Попытка записать данные по адресу 0x0000000C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x5060 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042D9AF in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:20:
+
+     18:     TreeInsert (&tree, 40, &dumpInfo);
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+=>   20:     node2->right = (node_t*)0x12345678;
+     21:     node2->left = (node_t*)0x67693123;
+     22:     //int x = treeVerifier(&tree);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 10:04:05, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 10:04:08
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042D9AF в функции main() в файле C:/Users/Admin/Desktop/prodva/Tree/main.cpp на строке 20. Попытка записать данные по адресу 0x0000000C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x5060 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042D9AF in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:20:
+
+     18:     TreeInsert (&tree, 40, &dumpInfo);
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+=>   20:     node2->right = (node_t*)0x12345678;
+     21:     node2->left = (node_t*)0x67693123;
+     22:     //int x = treeVerifier(&tree);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 10:04:05, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 10:04:08
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042D9AF в функции main() в файле C:/Users/Admin/Desktop/prodva/Tree/main.cpp на строке 20. Попытка записать данные по адресу 0x0000000C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x68BC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042D9AF in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:20:
+
+     18:     TreeInsert (&tree, 40, &dumpInfo);
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+=>   20:     node2->right = (node_t*)0x12345678;
+     21:     node2->left = (node_t*)0x67693123;
+     22:     //int x = treeVerifier(&tree);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 10:05:00, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 10:05:03
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042D9AF в функции main() в файле C:/Users/Admin/Desktop/prodva/Tree/main.cpp на строке 20. Попытка записать данные по адресу 0x0000000C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x68BC (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042D9AF in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:20:
+
+     18:     TreeInsert (&tree, 40, &dumpInfo);
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+=>   20:     node2->right = (node_t*)0x12345678;
+     21:     node2->left = (node_t*)0x67693123;
+     22:     //int x = treeVerifier(&tree);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 10:05:00, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 10:05:03
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042D9AF в функции main() в файле C:/Users/Admin/Desktop/prodva/Tree/main.cpp на строке 20. Попытка записать данные по адресу 0x0000000C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x1CC8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042D9AF in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:20:
+
+     18:     TreeInsert (&tree, 40, &dumpInfo);
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+=>   20:     node2->right = (node_t*)0x12345678;
+     21:     node2->left = (node_t*)0x67693123;
+     22:     //int x = treeVerifier(&tree);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 10:07:33, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 10:07:37
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0042D9AF в функции main() в файле C:/Users/Admin/Desktop/prodva/Tree/main.cpp на строке 20. Попытка записать данные по адресу 0x0000000C в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057D65C (32-bit), Flags: Cmdre0, Thread: 0x1CC8 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0042D9AF in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:20:
+
+     18:     TreeInsert (&tree, 40, &dumpInfo);
+     19:     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
+=>   20:     node2->right = (node_t*)0x12345678;
+     21:     node2->left = (node_t*)0x67693123;
+     22:     //int x = treeVerifier(&tree);
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 10:07:33, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 10:07:37
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045C75E в функции deleteNode() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 255. Попытка прочесть данные по адресу 0x67693123 в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057E65C (32-bit), Flags: Cmdre0, Thread: 0xF5C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045C75E in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: deleteNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:255:
+
+    253: 
+    254:     node_t** left = nodeLeft(node);
+=>  255:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
+    256:         deleteNode(*nodeLeft(node));
+    257: 
+
+# 1 0x0045C7BC in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: deleteNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:260:
+
+    258:     node_t** right = nodeRight(node);
+    259:     if((right != NULL) && (*right != NULL) && ((*right)->canary == SIGNATURE))
+=>  260:         deleteNode(*nodeRight(node));
+    261: 
+    262:     node->canary = 0xDEADBABE;
+
+# 2 0x0045C77C in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: deleteNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:256:
+
+    254:     node_t** left = nodeLeft(node);
+    255:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
+=>  256:         deleteNode(*nodeLeft(node));
+    257: 
+    258:     node_t** right = nodeRight(node);
+
+# 3 0x0045C77C in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: deleteNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:256:
+
+    254:     node_t** left = nodeLeft(node);
+    255:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
+=>  256:         deleteNode(*nodeLeft(node));
+    257: 
+    258:     node_t** right = nodeRight(node);
+
+# 4 0x0045CD3D in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: deleteTree() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:330:
+
+    328:     node_t* rootNode = *treeRoot(tree);
+    329: 
+=>  330:     deleteNode(rootNode);
+    331: 
+    332:     return noErrors;
+
+# 5 0x0042DDA8 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:52:
+
+     50:     //deleteNode(node2);
+     51:     //treeDump(&tree, &dumpInfo, "afterDelete 2");
+=>   52:     deleteTree(&tree);
+     53: 
+     54: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 10:19:15, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 10:19:19
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\Users\Admin\Desktop\prodva\Tree\tree.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x0045C75E в функции deleteNode() в файле C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp на строке 255. Попытка прочесть данные по адресу 0x67693123 в модуле C:\Users\Admin\Desktop\prodva\Tree\tree.exe. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400], Instance: 0x0057E65C (32-bit), Flags: Cmdre0, Thread: 0xF5C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0045C75E in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: deleteNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:255:
+
+    253: 
+    254:     node_t** left = nodeLeft(node);
+=>  255:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
+    256:         deleteNode(*nodeLeft(node));
+    257: 
+
+# 1 0x0045C7BC in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: deleteNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:260:
+
+    258:     node_t** right = nodeRight(node);
+    259:     if((right != NULL) && (*right != NULL) && ((*right)->canary == SIGNATURE))
+=>  260:         deleteNode(*nodeRight(node));
+    261: 
+    262:     node->canary = 0xDEADBABE;
+
+# 2 0x0045C77C in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: deleteNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:256:
+
+    254:     node_t** left = nodeLeft(node);
+    255:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
+=>  256:         deleteNode(*nodeLeft(node));
+    257: 
+    258:     node_t** right = nodeRight(node);
+
+# 3 0x0045C77C in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: deleteNode() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:256:
+
+    254:     node_t** left = nodeLeft(node);
+    255:     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
+=>  256:         deleteNode(*nodeLeft(node));
+    257: 
+    258:     node_t** right = nodeRight(node);
+
+# 4 0x0045CD3D in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: deleteTree() at C:/Users/Admin/Desktop/prodva/Tree/treeFunctions.cpp:330:
+
+    328:     node_t* rootNode = *treeRoot(tree);
+    329: 
+=>  330:     deleteNode(rootNode);
+    331: 
+    332:     return noErrors;
+
+# 5 0x0042DDA8 in C:\Users\Admin\Desktop\prodva\Tree\tree.exe: main() at C:/Users/Admin/Desktop/prodva/Tree/main.cpp:52:
+
+     50:     //deleteNode(node2);
+     51:     //treeDump(&tree, &dumpInfo, "afterDelete 2");
+=>   52:     deleteTree(&tree);
+     53: 
+     54: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 174, Date: 2025-08-03 17:59:06 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\admin\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Nov  7 2025 10:19:15, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Nov 07 2025 10:19:19
+
+Run file:	C:\Users\Admin\Desktop\prodva\Tree\tree.exe
+Directory:	C:\Users\Admin\Desktop\prodva\Tree
+
+--------------------------------------------------

@@ -73,7 +73,7 @@ int fprintfNodeGraph (node_t* node, int rank, FILE* graphFile) {
     assert(graphFile);
 
     if(node->canary != SIGNATURE) {
-        fprintf(graphFile, "    errorNode0x%p [rank = %d, label = \"{ ERRROR!| 0x%p }\", style = filled, fillcolor = \"#be3131ff\", color = black, shape = doubleoctagon];\n",
+        fprintf(graphFile, "    errorNode0x%p [rank = %d, label = \"{ ERROR!| 0x%p }\", style = filled, fillcolor = \"#be3131ff\", color = black, shape = doubleoctagon];\n",
                 node, rank, node);
         return 0;
     }
@@ -103,7 +103,7 @@ int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile) {
     }
 
     if((left != NULL) && (*left != NULL) && (_txIsBadReadPtr(*left))) {
-        fprintf(graphFile, "    errorNode0x%p [label = \"ERRROR!\\n 0x%p \", style = filled, fillcolor = \"#be3131ff\", color = black, fontcolor = white, shape = doubleoctagon];\n",
+        fprintf(graphFile, "    errorNode0x%p [label = \"ERROR!\\n 0x%p \", style = filled, fillcolor = \"#be3131ff\", color = black, fontcolor = white, shape = doubleoctagon];\n",
                 *left, *left);
         fprintf(graphFile, "    node0x%p:left -> errorNode0x%p [color = \"#f90d0dff\"];\n", node, *left);
     }
@@ -115,7 +115,7 @@ int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile) {
     }
 
     if((right != NULL) && (*right != NULL) && (_txIsBadReadPtr(*right))) {
-        fprintf(graphFile, "    errorNode0x%p [label = \"ERRROR!\\n 0x%p \", style = filled, fillcolor = \"#be3131ff\", color = black, fontcolor = white, shape = doubleoctagon];\n",
+        fprintf(graphFile, "    errorNode0x%p [label = \"ERROR!\\n 0x%p \", style = filled, fillcolor = \"#be3131ff\", color = black, fontcolor = white, shape = doubleoctagon];\n",
                 *right, *right);
         fprintf(graphFile, "    node0x%p:right -> errorNode0x%p [color = \"#f90d0dff\"];\n", node, *right);
     }
@@ -149,6 +149,11 @@ void treeDump (struct tree_t* tree, struct dump* dumpInfo, const char* message) 
     dumpInfo->nameOfFunc, dumpInfo->nameOfFile, dumpInfo->numOfLine);
 
     fprintf(dumpFile, "<h2><font color=blue>%s</font></h2>\n", message);
+    fprintfTreeErrorsForDump (tree, dumpFile, dumpInfo);
+
+    fprintf(dumpFile, "Root Node == 0x%p\n", *treeRoot(tree));
+    fprintf(dumpFile, "Tree size == %d\n", *treeSize(tree));
+    fprintf(dumpFile, "ErrorCode == %d\n", tree->errorCode);
 
     createGraphImageForDump (tree, dumpFile, nameOfTextGraphFile);
 
@@ -185,6 +190,11 @@ node_t* treeInsert (tree_t* tree, treeElem_t dataValue, struct dump* dumpInfo) {
     snprintf(beforeMessage, sizeof(beforeMessage), "BEFORE insert \"%d\" in tree", dataValue);
     snprintf(afterMessage, sizeof(afterMessage), "AFTER insert \"%d\" in tree", dataValue);
 
+    if(treeVerifier(tree)) {
+        treeDump(tree, dumpInfo, beforeMessage);
+        return NULL;
+    }
+
     node_t* newNode = NULL;
 
     treeDump(tree, dumpInfo, beforeMessage);
@@ -215,6 +225,11 @@ node_t* treeInsert (tree_t* tree, treeElem_t dataValue, struct dump* dumpInfo) {
     }
     *treeSize(tree) += 1;
 
+    if(treeVerifier(tree)) {
+        treeDump(tree, dumpInfo, afterMessage);
+        return NULL;
+    }
+
     treeDump(tree, dumpInfo, afterMessage);
 
     return newNode;
@@ -225,6 +240,7 @@ tree_t* treeCtor(tree_t* tree, treeElem_t rootDataValue, dump* dumpInfo) {
 
     *treeRoot(tree) = treeNodeCtor(rootDataValue);
     *treeSize(tree) = 1;
+    tree->errorCode = noErrors;
 
     dumpInfo->nameOfFunc = __func__;
     treeDump(tree, dumpInfo, "AFTER creation of the tree");
@@ -236,11 +252,13 @@ int deleteNode(node_t* node) {
     assert(node);
 
     node_t** left = nodeLeft(node);
-    if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
+    if((left != NULL) && (*left != NULL)
+        && !(_txIsBadReadPtr(*left)) && ((*left)->canary == SIGNATURE))
         deleteNode(*nodeLeft(node));
 
     node_t** right = nodeRight(node);
-    if((right != NULL) && (*right != NULL) && ((*right)->canary == SIGNATURE))
+    if((right != NULL) && (*right != NULL)
+        && !(_txIsBadReadPtr(*right)) && ((*right)->canary == SIGNATURE))
         deleteNode(*nodeRight(node));
 
     node->canary = 0xDEADBABE;
@@ -254,20 +272,64 @@ int nodeVerifier (node_t* node, int* errorCode) {
     if (node->canary != SIGNATURE)
         (*errorCode) |= deadCanary;
 
-    if (_txIsBadReadPtr(*nodeRight(node)))
+    if (_txIsBadReadPtr(*nodeRight(node)) && (*nodeRight(node) != NULL))
         (*errorCode) |= badRight;
 
-    if (_txIsBadReadPtr(*nodeLeft(node)))
+    if (_txIsBadReadPtr(*nodeLeft(node)) && (*nodeLeft(node) != NULL))
         (*errorCode) |= badLeft;
 
     if  (!(_txIsBadReadPtr(*nodeRight(node))))
         nodeVerifier(*nodeRight(node), errorCode);
 
-    if  (!(_txIsBadReadPtr(*nodeRight(node))))
+    if  (!(_txIsBadReadPtr(*nodeRight(node))) && (*nodeRight(node)) != NULL)
         nodeVerifier(*nodeRight(node), errorCode);
 
-    if  (!(_txIsBadReadPtr(*nodeLeft(node))))
+    if  (!(_txIsBadReadPtr(*nodeLeft(node))) && (*nodeLeft(node)) != NULL)
         nodeVerifier(*nodeLeft(node), errorCode);
 
     return (*errorCode);
+}
+
+void fprintfTreeErrorsForDump (struct tree_t* tree, FILE* dumpFile, struct dump* dumpInfo) {
+    assert(tree);
+    assert(dumpInfo);
+    assert(dumpFile);
+
+    if (tree->errorCode & deadCanary) {
+        fprintf(dumpFile, "<h2><font color=red>ERROR! NODE CANARY WAS BROKEN! errorcode = %d</font></h2>\n",
+        deadCanary);
+        printf("ERROR! NODE CANARY WAS BROKEN! errorcode = %d; In func %s from %s:%d\n",
+        deadCanary, dumpInfo->nameOfFunc, dumpInfo->nameOfFile, dumpInfo->numOfLine);
+    }
+
+    if (tree->errorCode & badLeft) {
+        fprintf(dumpFile, "<h2><font color=red>ERROR! BAD LEFT NODE LINK! errorcode = %d</font></h2>\n", badLeft);
+        printf("ERROR! BAD LEFT NODE LINK! errorcode = %d; In func %s from %s:%d\n",
+        badLeft, dumpInfo->nameOfFunc, dumpInfo->nameOfFile, dumpInfo->numOfLine);
+    }
+
+    if (tree->errorCode & badRight) {
+        fprintf(dumpFile, "<h2><font color=red>ERROR! RIGHT LEFT NODE LINK! errorcode = %d</font></h2>\n", badRight);
+        printf("ERROR! BAD RIGHT NODE LINK! errorcode = %d; In func %s from %s:%d\n",
+        badRight, dumpInfo->nameOfFunc, dumpInfo->nameOfFile, dumpInfo->numOfLine);
+    }
+}
+
+int treeVerifier (tree_t* tree) {
+    assert(tree);
+
+    node_t* rootNode = *treeRoot(tree);
+    nodeVerifier(rootNode, &(tree->errorCode));
+
+    return tree->errorCode;
+}
+
+int deleteTree (tree_t* tree) {
+    assert(tree);
+
+    node_t* rootNode = *treeRoot(tree);
+
+    deleteNode(rootNode);
+
+    return noErrors;
 }
