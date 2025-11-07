@@ -19,13 +19,13 @@
 
 node_t* treeNodeCtor (treeElem_t dataValue);
 
-int printNode (node_t* node);
+int printNode (node_t* node, size_t* nodesPassed, size_t treeSize);
 
-int fprintfTreeGraphDump (node_t* treeNode, const char* textGraphFileName);
+int fprintfTreeGraphDump (tree_t* tree, const char* textGraphFileName);
 
-int fprintfNodeGraph (node_t* node, int rank, FILE* textFile);
+int fprintfNodeGraph (node_t* node, int rank, FILE* textFile, size_t* nodesPassed, size_t treeSize);
 
-int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile);
+int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile, size_t* nodesPassed, size_t treeSize);
 
 void treeDump (struct tree_t* tree, struct dump* dumpInfo, const char* message);
 
@@ -35,11 +35,11 @@ node_t* treeInsert (tree_t* tree, treeElem_t dataValue, struct dump* dumpInfo);
 
 tree_t* treeCtor (tree_t* tree, treeElem_t rootDataValue, dump* dumpInfo);
 
-int deleteNode (node_t* node);
+int deleteNode (node_t* node, size_t* nodesPassed, size_t treeSize);
 
 void fprintfTreeErrorsForDump (struct tree_t* tree, FILE* dumpFile, struct dump* dumpInfo);
 
-int nodeVerifier (node_t* node, int* errorCode);
+int nodeVerifier (node_t* node, int* errorCode, size_t* nodesPassed, size_t treeSize);
 
 int treeVerifier (tree_t* tree);
 

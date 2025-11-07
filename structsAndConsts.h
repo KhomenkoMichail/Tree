@@ -32,6 +32,7 @@ enum treeErr_t {
     deadCanary = 0x01,
     badLeft = 0x02,
     badRight = 0x04,
+    tooManyRecursiveCalls = 0x08,
 };
 
 const size_t STR_SIZE = 64;

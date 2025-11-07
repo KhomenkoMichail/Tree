@@ -19,28 +19,32 @@ node_t* treeNodeCtor (treeElem_t dataValue) {
     return newNode;
 }
 
-int printNode (node_t* node) {
+int printNode (node_t* node, size_t* nodesPassed, size_t treeSize) {
     assert(node);
+
+    (*nodesPassed) += 1;
+    if (*nodesPassed > treeSize)
+        return tooManyRecursiveCalls;
 
     printf("(");
 
     node_t** left = nodeLeft(node);
     if((left != NULL) && (*left != NULL) && ((*left)->canary == SIGNATURE))
-        printNode(*nodeLeft(node));
+        printNode(*nodeLeft(node), nodesPassed, treeSize);
 
     printf("%d", *nodeData(node));
 
     node_t** right = nodeRight(node);
     if((right != NULL) && (*right != NULL) && ((*right)->canary == SIGNATURE))
-        printNode(*nodeRight(node));
+        printNode(*nodeRight(node), nodesPassed, treeSize);
 
     printf(")");
 
     return 0;
 }
 
-int fprintfTreeGraphDump (node_t* rootNode, const char* textGraphFileName) {
-    assert(rootNode);
+int fprintfTreeGraphDump (tree_t* tree, const char* textGraphFileName) {
+    assert(tree);
     assert(textGraphFileName);
 
     FILE* graphFile = fopen(textGraphFileName, "w");
@@ -55,8 +59,10 @@ int fprintfTreeGraphDump (node_t* rootNode, const char* textGraphFileName) {
     fprintf(graphFile, "    rankdir = TB;\n");
     fprintf(graphFile, "    node [shape = Mrecord, color = black];\n");
 
-    fprintfNodeGraph(rootNode, 0, graphFile);
-    fprintfNodeLinksForGraph(rootNode, graphFile);
+    size_t graphNodesMade = 0;
+    fprintfNodeGraph(*treeRoot(tree), 0, graphFile, &graphNodesMade, *treeSize(tree));
+    size_t graphLinksMade = 0;
+    fprintfNodeLinksForGraph(*treeRoot(tree), graphFile, &graphLinksMade, *treeSize(tree));
 
     fprintf(graphFile, " }\n");
     if (fclose(graphFile) != 0) {
@@ -68,38 +74,53 @@ int fprintfTreeGraphDump (node_t* rootNode, const char* textGraphFileName) {
     return 0;
 }
 
-int fprintfNodeGraph (node_t* node, int rank, FILE* graphFile) {
+int fprintfNodeGraph (node_t* node, int rank, FILE* graphFile, size_t* nodesPassed, size_t treeSize) {
     assert(node);
     assert(graphFile);
+
+    (*nodesPassed) += 1;
+    if (*nodesPassed > treeSize)
+        return tooManyRecursiveCalls;
 
     if(node->canary != SIGNATURE) {
         fprintf(graphFile, "    errorNode0x%p [rank = %d, label = \"{ ERROR!| 0x%p }\", style = filled, fillcolor = \"#be3131ff\", color = black, shape = doubleoctagon];\n",
                 node, rank, node);
         return 0;
     }
+    char leftPtr[STR_SIZE] = "NULL";
+    if (*(nodeLeft(node)) != NULL)
+        snprintf(leftPtr, sizeof(leftPtr), "0x%p", *(nodeLeft(node)));
 
-    fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| data = %d|CANARY = %X|{<left>LEFT\\n 0x%p| <right>RIGHT\\n 0x%p}}\", style = filled, fillcolor = \"#c1e0a7ff\", color = black];\n",
-                node, rank, node, *nodeData(node), node->canary,*(nodeLeft(node)), *(nodeRight(node)));
+    char rightPtr[STR_SIZE] = "NULL";
+    if (*(nodeRight(node)) != NULL)
+        snprintf(rightPtr, sizeof(rightPtr), "0x%p", *(nodeRight(node)));
+
+    fprintf(graphFile, "    node0x%p [rank = %d, label = \"{ <addr>0x%p| data = %d|CANARY = %X|{<left>LEFT\\n %s| <right>RIGHT\\n %s}}\", style = filled, fillcolor = \"#c1e0a7ff\", color = black];\n",
+                node, rank, node, *nodeData(node), node->canary, leftPtr, rightPtr);
 
     node_t** left = nodeLeft(node);
     if((left != NULL) && (*left != NULL) && !(_txIsBadReadPtr(*left)) && ((*left)->canary == SIGNATURE))
-        fprintfNodeGraph(*nodeLeft(node), rank + 1, graphFile);
+        fprintfNodeGraph(*nodeLeft(node), rank + 1, graphFile, nodesPassed, treeSize);
 
     node_t** right = nodeRight(node);
     if((right != NULL) && (*right != NULL) && !(_txIsBadReadPtr(*right)) && ((*right)->canary == SIGNATURE))
-        fprintfNodeGraph(*nodeRight(node), rank + 1, graphFile);
+        fprintfNodeGraph(*nodeRight(node), rank + 1, graphFile, nodesPassed, treeSize);
 
     return 0;
 }
 
-int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile) {
+int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile, size_t* nodesPassed, size_t treeSize) {
     assert(node);
     assert(graphFile);
+
+    (*nodesPassed) += 1;
+    if (*nodesPassed > treeSize)
+        return tooManyRecursiveCalls;
 
     node_t** left = nodeLeft(node);
     if((left != NULL) && (*left != NULL) && !(_txIsBadReadPtr(*left)) && ((*left)->canary == SIGNATURE)) {
         fprintf(graphFile, "    node0x%p:left -> node0x%p:addr [color = \"#5d510cff\"];\n", node, *nodeLeft(node));
-        fprintfNodeLinksForGraph(*nodeLeft(node), graphFile);
+        fprintfNodeLinksForGraph(*nodeLeft(node), graphFile, nodesPassed, treeSize);
     }
 
     if((left != NULL) && (*left != NULL) && (_txIsBadReadPtr(*left))) {
@@ -111,7 +132,7 @@ int fprintfNodeLinksForGraph (node_t* node, FILE* graphFile) {
     node_t** right = nodeRight(node);
     if((right != NULL) && (*right != NULL) && !(_txIsBadReadPtr(*right)) && ((*right)->canary == SIGNATURE)) {
         fprintf(graphFile, "    node0x%p:right -> node0x%p:addr [color = \"#5d510cff\"];\n", node, *nodeRight(node));
-        fprintfNodeLinksForGraph(*nodeRight(node), graphFile);
+        fprintfNodeLinksForGraph(*nodeRight(node), graphFile, nodesPassed, treeSize);
     }
 
     if((right != NULL) && (*right != NULL) && (_txIsBadReadPtr(*right))) {
@@ -172,8 +193,8 @@ void createGraphImageForDump (struct tree_t* tree, FILE* dumpFile, const char* n
     static int graphImageCounter = 0;
     graphImageCounter++;
 
-    node_t* rootNode = *treeRoot(tree);
-    fprintfTreeGraphDump(rootNode, nameOfTextGraphFile);
+    //node_t* rootNode = *treeRoot(tree);
+    fprintfTreeGraphDump(tree, nameOfTextGraphFile);
 
     char graphvizCallCommand[STR_SIZE] = {};
     snprintf(graphvizCallCommand, sizeof(graphvizCallCommand), "dot -Tpng %s -o PNG_DUMPS/graph%d.png", nameOfTextGraphFile, graphImageCounter);
@@ -248,26 +269,34 @@ tree_t* treeCtor(tree_t* tree, treeElem_t rootDataValue, dump* dumpInfo) {
     return tree;
 }
 
-int deleteNode(node_t* node) {
+int deleteNode(node_t* node , size_t* nodesPassed, size_t treeSize) {
     assert(node);
+
+    (*nodesPassed) += 1;
+    if (*nodesPassed > treeSize)
+        return tooManyRecursiveCalls;
 
     node_t** left = nodeLeft(node);
     if((left != NULL) && (*left != NULL)
         && !(_txIsBadReadPtr(*left)) && ((*left)->canary == SIGNATURE))
-        deleteNode(*nodeLeft(node));
+        deleteNode(*nodeLeft(node), nodesPassed, treeSize);
 
     node_t** right = nodeRight(node);
     if((right != NULL) && (*right != NULL)
         && !(_txIsBadReadPtr(*right)) && ((*right)->canary == SIGNATURE))
-        deleteNode(*nodeRight(node));
+        deleteNode(*nodeRight(node), nodesPassed, treeSize);
 
     node->canary = 0xDEADBABE;
     free(node);
     return 0;
 }
 
-int nodeVerifier (node_t* node, int* errorCode) {
+int nodeVerifier (node_t* node, int* errorCode, size_t* nodesPassed, size_t treeSize) {
     assert(node);
+
+    (*nodesPassed) += 1;
+    if (*nodesPassed > treeSize)
+        return tooManyRecursiveCalls;
 
     if (node->canary != SIGNATURE)
         (*errorCode) |= deadCanary;
@@ -278,14 +307,14 @@ int nodeVerifier (node_t* node, int* errorCode) {
     if (_txIsBadReadPtr(*nodeLeft(node)) && (*nodeLeft(node) != NULL))
         (*errorCode) |= badLeft;
 
-    if  (!(_txIsBadReadPtr(*nodeRight(node))))
-        nodeVerifier(*nodeRight(node), errorCode);
+    //if  (!(_txIsBadReadPtr(*nodeRight(node))))
+    //    nodeVerifier(*nodeRight(node), errorCode, nodesPassed, treeSize);
 
     if  (!(_txIsBadReadPtr(*nodeRight(node))) && (*nodeRight(node)) != NULL)
-        nodeVerifier(*nodeRight(node), errorCode);
+        nodeVerifier(*nodeRight(node), errorCode, nodesPassed, treeSize);
 
     if  (!(_txIsBadReadPtr(*nodeLeft(node))) && (*nodeLeft(node)) != NULL)
-        nodeVerifier(*nodeLeft(node), errorCode);
+        nodeVerifier(*nodeLeft(node), errorCode, nodesPassed, treeSize);
 
     return (*errorCode);
 }
@@ -319,7 +348,9 @@ int treeVerifier (tree_t* tree) {
     assert(tree);
 
     node_t* rootNode = *treeRoot(tree);
-    nodeVerifier(rootNode, &(tree->errorCode));
+
+    size_t numOfVerifiedNodes = 0;
+    nodeVerifier(rootNode, &(tree->errorCode), &numOfVerifiedNodes, *treeSize(tree));
 
     return tree->errorCode;
 }
@@ -329,7 +360,8 @@ int deleteTree (tree_t* tree) {
 
     node_t* rootNode = *treeRoot(tree);
 
-    deleteNode(rootNode);
+    size_t numOfDeletedNodes = 0;
+    deleteNode(rootNode, &numOfDeletedNodes, *treeSize(tree));
 
     return noErrors;
 }
