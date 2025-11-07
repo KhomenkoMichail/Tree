@@ -45,4 +45,6 @@ int treeVerifier (tree_t* tree);
 
 int deleteTree (tree_t* tree);
 
+int treeSort (treeElem_t* inputDataArr, size_t arrSize);
+
 #endif

@@ -9,6 +9,7 @@
 
 int main (void) {
 
+
     struct dump dumpInfo = {};
     struct tree_t tree = {};
     dumpInfo.nameOfGraphFile = "treeGraph.txt";
@@ -37,24 +38,13 @@ int main (void) {
     node_t* node2 = TreeInsert (&tree, 2, &dumpInfo);
     node2->right = (node_t*)0x12345678;
     node2->left = (node_t*)0x67693123;
-    //int x = treeVerifier(&tree);
-    //printf("x == %d\n", x);
-    //treeDump (&tree, &dumpInfo, "errorCheck");
     TreeInsert (&tree, 17, &dumpInfo);
     TreeInsert (&tree, 5, &dumpInfo);
-    //TreeInsert (&tree, 6, &dumpInfo);
-    //TreeInsert (&tree, 99, &dumpInfo);
 
-    //printf("%p\n", node2);
-    //free(node2);
-    //deleteNode(node2);
-    //treeDump(&tree, &dumpInfo, "afterDelete 2");
     deleteTree(&tree);
 
-
-
-    //printNode(*treeRoot(&tree));
-
+    treeElem_t sortNumbers[15] = {5, 7, 10, 2, 6, 19, 1, 66, 74, 33, 3, 13, 11, 8, 88};
+    treeSort(sortNumbers, 15);
 
 
     return 0;

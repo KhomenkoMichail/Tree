@@ -365,3 +365,27 @@ int deleteTree (tree_t* tree) {
 
     return noErrors;
 }
+
+int treeSort (treeElem_t* inputDataArr, size_t arrSize) {
+    assert(inputDataArr);
+
+    tree_t tree = {};
+
+    struct dump dumpInfo = {};
+    dumpInfo.nameOfGraphFile = "treeGraph.txt";
+    dumpInfo.nameOfDumpFile = "sortDump.html";
+
+    TreeCtor(&tree, inputDataArr[0], &dumpInfo);
+
+    for (size_t numOfNode = 1; numOfNode < arrSize; numOfNode++)
+        if (TreeInsert (&tree, inputDataArr[numOfNode], &dumpInfo) == NULL) {
+            printf("ERROR tree sort\n");
+            break;
+        }
+
+    size_t numOfPrintedNodes = 0;
+    printNode (*treeRoot(&tree), &numOfPrintedNodes, *treeSize(&tree));
+
+    deleteTree(&tree);
+    return 0;
+}
