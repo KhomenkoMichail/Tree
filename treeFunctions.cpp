@@ -166,7 +166,7 @@ void treeDump (struct tree_t* tree, struct dump* dumpInfo, const char* message) 
     }
 
     fprintf(dumpFile, "<pre>\n");
-    fprintf(dumpFile, "<h3>listDump() <font color=red>from %s at %s:%d</font></h3>\n",
+    fprintf(dumpFile, "<h3>treeDump() <font color=red>from %s at %s:%d</font></h3>\n",
     dumpInfo->nameOfFunc, dumpInfo->nameOfFile, dumpInfo->numOfLine);
 
     fprintf(dumpFile, "<h2><font color=blue>%s</font></h2>\n", message);
@@ -342,6 +342,12 @@ void fprintfTreeErrorsForDump (struct tree_t* tree, FILE* dumpFile, struct dump*
         printf("ERROR! BAD RIGHT NODE LINK! errorcode = %d; In func %s from %s:%d\n",
         badRight, dumpInfo->nameOfFunc, dumpInfo->nameOfFile, dumpInfo->numOfLine);
     }
+
+    if (tree->errorCode & tooManyRecursiveCalls) {
+        fprintf(dumpFile, "<h2><font color=red>ERROR! TOO MANY RECURSIVE CALLS! errorcode = %d</font></h2>\n", tooManyRecursiveCalls);
+        printf("ERROR!TOO MANY RECURSIVE CALLS! errorcode = %d; In func %s from %s:%d\n",
+        tooManyRecursiveCalls, dumpInfo->nameOfFunc, dumpInfo->nameOfFile, dumpInfo->numOfLine);
+    }
 }
 
 int treeVerifier (tree_t* tree) {
@@ -350,7 +356,10 @@ int treeVerifier (tree_t* tree) {
     node_t* rootNode = *treeRoot(tree);
 
     size_t numOfVerifiedNodes = 0;
-    nodeVerifier(rootNode, &(tree->errorCode), &numOfVerifiedNodes, *treeSize(tree));
+    int error = nodeVerifier(rootNode, &(tree->errorCode), &numOfVerifiedNodes, *treeSize(tree));
+
+    if (error & tooManyRecursiveCalls)
+        tree->errorCode |= tooManyRecursiveCalls;
 
     return tree->errorCode;
 }
